@@ -26,7 +26,7 @@ clf.fit(trainingImages[:1000], trainingLabels[:1000])
 predictionRes = clf.predict(testImages)
 
 # Calculation of the success of the test phase via metrics
-print metrics.classification_report(testLabels.tolist(), predictionRes, digits=4)
+print metrics.classification_report(testLabels.tolist(), predictionRes)
 
 # Manual calculation of the success of the test phase
 #rightClassifiedTestImages = 0

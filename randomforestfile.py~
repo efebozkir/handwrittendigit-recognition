@@ -27,7 +27,7 @@ predictionRes = clf.predict(testImages)
 print metrics.classification_report(testLabels.tolist(), predictionRes, digits=4)
 
 # Cross Validation Results Exercise 3.3 for Random Forests
-scores = cross_validation.cross_val_score(clf, trainingImages[:1000], trainingLabels[:1000].tolist(), cv=5)
+scores = cross_validation.cross_val_score(clf, trainingImages[:1000], trainingLabels[:1000].tolist(), cv=20)
 print scores
 print "Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() / 2)
 

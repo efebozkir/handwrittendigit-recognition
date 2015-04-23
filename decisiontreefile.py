@@ -26,16 +26,10 @@ clf = clf.fit(trainingImages[:1000], trainingLabels[:1000])
 
 predictionRes = clf.predict(testImages)
 
-print metrics.classification_report(testLabels.tolist(), predictionRes)
-
-# Decision Tree as output -> decision_tree.png
-dot_data = StringIO.StringIO()
-tree.export_graphviz(clf, out_file=dot_data)
-graph = pydot.graph_from_dot_data(dot_data.getvalue())
-graph.write_png('decision_tree.png')
+print metrics.classification_report(testLabels.tolist(), predictionRes, digits=4)
 
 # Cross Validation Results Exercise 3.3 for Decision Tree
-scores = cross_validation.cross_val_score(clf, trainingImages[:1000], trainingLabels[:1000].tolist(), cv=20)
+scores = cross_validation.cross_val_score(clf, trainingImages[:1000], trainingLabels[:1000].tolist(), cv=5)
 print scores
 print "Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() / 2)
 
@@ -47,6 +41,12 @@ importances = importances.reshape((28, 28))
 plt.matshow(importances, cmap=plt.cm.hot)
 plt.title("Pixel importances for decision tree")
 plt.show()
+
+# Decision Tree as output -> decision_tree.png
+dot_data = StringIO.StringIO()
+tree.export_graphviz(clf, out_file=dot_data)
+graph = pydot.graph_from_dot_data(dot_data.getvalue())
+graph.write_png('decision_tree.png')
 
 # IMPORTANT NOTE: If you change the number of training images, you should also change the number of images
 # in cross validation.
